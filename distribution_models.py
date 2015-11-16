@@ -13,7 +13,7 @@ class DistributionModels:
     def polya_eggenberger(self, all_possible_votes, b):
         """Simulates Polya-Eggenberger urn model (Impartial Culture for b = 0)
         """
-        for i in range(0, self.noc):
+        for i in range(0, self.nov):
             drawn_vote = self.draw_vote(all_possible_votes)
             self.preferences["v" + str(i + 1)] = drawn_vote
             for _ in range(b):
