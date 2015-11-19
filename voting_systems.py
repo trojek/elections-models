@@ -12,7 +12,7 @@ class VotingSystems:
         max_points = len(self.preferences.values()[0])
 
         for voter, voters_preference in self.preferences.iteritems():
-            points = max_points
+            points = max_points - 1
             for single_preference in voters_preference:
                 self.candidates_points[single_preference] += points
                 points -= 1
@@ -21,13 +21,36 @@ class VotingSystems:
 
     def copeland(self):
         pair_comparison = self.generate_pairs_for_pairwise_comparison()
-        pair_comparison = self.result_of_pairwise_comparison(pair_comparison)
+        pair_comparison = self.compare_pairs(pair_comparison)
         self.count_candidate_points(pair_comparison)
 
         return self.candidates_points
 
     def maximin(self):
-        return 0
+        pair_comparison = list(itertools.permutations(self.preferences.values()[0],2))
+        list_of_candidates = self.preferences.values()[0]
+
+        # Compare all pairs
+        list_of_results = {}
+        for pair in pair_comparison:
+            result = 0
+            for key, value in self.preferences.iteritems():
+                if value.index(pair[0]) < value.index(pair[1]):
+                    result +=1
+                else:
+                    result -=1
+            list_of_results[pair] = result
+
+        # Take min value from compared pairs
+        final_results = {}
+        for candidate in list_of_candidates:
+            results = []
+            for key, value in list_of_results.iteritems():
+                if key[0] == candidate:
+                    results.append(value)
+                    final_results[key[0]] = min(results)
+
+        return final_results
 
     def pluarality(self):
         for voter, voters_preference in self.preferences.iteritems():
@@ -49,7 +72,7 @@ class VotingSystems:
 
         return pairs
 
-    def result_of_pairwise_comparison(self, pair_comparison):
+    def compare_pairs(self, pair_comparison):
         for pair in pair_comparison:
             for key, value in self.preferences.iteritems():
                 if value.index(pair.keys()[0]) < value.index(pair.keys()[1]):
