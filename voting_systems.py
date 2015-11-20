@@ -1,4 +1,5 @@
 import itertools
+import operator
 
 class VotingSystems:
 
@@ -17,14 +18,14 @@ class VotingSystems:
                 self.candidates_points[single_preference] += points
                 points -= 1
 
-        return self.candidates_points
+        return self.sort_candidates(self.candidates_points)
 
     def copeland(self):
         pair_comparison = self.generate_pairs_for_pairwise_comparison()
         pair_comparison = self.compare_pairs(pair_comparison)
         self.count_candidate_points(pair_comparison)
 
-        return self.candidates_points
+        return self.sort_candidates(self.candidates_points)
 
     def maximin(self):
         pair_comparison = list(itertools.permutations(self.preferences.values()[0],2))
@@ -42,21 +43,20 @@ class VotingSystems:
             list_of_results[pair] = result
 
         # Take min value from compared pairs
-        final_results = {}
         for candidate in list_of_candidates:
             results = []
             for key, value in list_of_results.iteritems():
                 if key[0] == candidate:
                     results.append(value)
-                    final_results[key[0]] = min(results)
+                    self.candidates_points[key[0]] = min(results)
 
-        return final_results
+        return self.sort_candidates(self.candidates_points)
 
     def pluarality(self):
         for voter, voters_preference in self.preferences.iteritems():
                 self.candidates_points[voters_preference[0]] += 1
 
-        return self.candidates_points
+        return self.sort_candidates(self.candidates_points)
 
     def prepare_list_of_candidates(self):
         list = {}
@@ -88,3 +88,6 @@ class VotingSystems:
                 self.candidates_points[pair.keys()[0]] += 1
             else:
                 self.candidates_points[pair.keys()[1]] += 1
+
+    def sort_candidates(self, candidate_list):
+        return sorted(candidate_list.items(), key=operator.itemgetter(1), reverse=True)
