@@ -27,6 +27,10 @@ class DistributionModels:
         candidates = self.generate_random_positions_1d(self.noc)
         voters = self.generate_random_positions_1d(self.nov)
 
+        print candidates
+        candidates.sort()
+        print candidates
+
         for i, voter in enumerate(voters, start=1):
             self.preferences["v" + str(i)] = {}
             for j, candidate in enumerate(candidates, start=1):
