@@ -26,8 +26,6 @@ class DistributionModels:
     def single_peaked_1d(self):
         candidates = self.generate_random_positions_1d(self.noc)
         voters = self.generate_random_positions_1d(self.nov)
-
-        print candidates
         candidates.sort()
         print candidates
 

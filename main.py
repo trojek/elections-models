@@ -8,12 +8,12 @@ pe = DistributionModels(4,4)
 sp1d = DistributionModels(4,4)
 sp2d = DistributionModels(5,5)
 
-array = pe.generate_all_possible_votes("whatever")
-election = pe.polya_eggenberger(array, 0)
+possible_votes = pe.generate_all_possible_votes("whatever")
+election = pe.polya_eggenberger(possible_votes, 0)
 
 # print yaml.dump(election)
 
-# print yaml.dump(sp1d.single_peaked_1d())
+print yaml.dump(sp1d.single_peaked_1d())
 
 # print yaml.dump(sp2d.single_peaked_2d())
 
