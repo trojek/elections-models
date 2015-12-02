@@ -3,7 +3,7 @@ import operator
 
 class VotingSystems:
 
-    candidates_points = {}
+    # candidates_points = {}
 
     def __init__(self, preferences):
         self.preferences = preferences
