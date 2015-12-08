@@ -2,6 +2,7 @@ import yaml
 
 from distribution_models import DistributionModels
 from voting_systems import VotingSystems
+from election_control_algorithms import PluralityControl
 
 # parameters (number_of_voters, number_of_candidates)
 pe = DistributionModels(4,4)
@@ -31,3 +32,6 @@ print "Copeland"
 print vs3.copeland()
 print "Maximin"
 print vs4.maximin()
+
+pluralitycontrol = PluralityControl()
+pluralitycontrol.ccdc()

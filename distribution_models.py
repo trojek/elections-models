@@ -10,7 +10,7 @@ class DistributionModels:
         self.noc = number_of_candidates
         self.preferences = {}
 
-    def polya_eggenberger(self, all_possible_votes, b):
+    def polya_eggenberger(self, all_possible_votes, b = 0):
         """Simulates Polya-Eggenberger urn model (Impartial Culture for b = 0)
         """
         for i in range(0, self.nov):
@@ -21,13 +21,15 @@ class DistributionModels:
         return self.preferences
 
     def impartial_culture():
-        return 0
+        pass
 
     def single_peaked_1d(self):
+        """Simulates single peaked 1d voters and candidates generation"
+        """
         candidates = self.generate_random_positions_1d(self.noc)
         voters = self.generate_random_positions_1d(self.nov)
         candidates.sort()
-        
+
         for i, voter in enumerate(voters, start=1):
             self.preferences["v" + str(i)] = {}
             for j, candidate in enumerate(candidates, start=1):
@@ -37,6 +39,8 @@ class DistributionModels:
         return self.preferences
 
     def single_peaked_2d(self):
+        """Simulates single peaked 2d voters and candidates generation"
+        """
         candidates = self.generate_random_positions_2d(self.noc)
         voters = self.generate_random_positions_2d(self.nov)
 
