@@ -9,7 +9,8 @@ class VotingSystems:
         self.candidates_points = self.prepare_list_of_candidates()
 
     def borda(self):
-        """Calculate ranking list of candidates based on voters' preferences according to Borda voting method.
+        """Calculate ranking list of candidates based on voters' preferences
+        according to Borda voting method.
         """
         max_points = len(self.preferences.values()[0])
 
@@ -22,7 +23,8 @@ class VotingSystems:
         return self.sort_candidates(self.candidates_points)
 
     def copeland(self):
-        """Calculate ranking list of candidates based on voters' preferences according to Copeland voting method.
+        """Calculate ranking list of candidates based on voters' preferences
+        according to Copeland voting method.
         """
         pair_comparison = self.generate_pairs_for_pairwise_comparison()
         pair_comparison = self.compare_pairs(pair_comparison)
@@ -31,7 +33,8 @@ class VotingSystems:
         return self.sort_candidates(self.candidates_points)
 
     def maximin(self):
-        """Calculate ranking list of candidates based on voters' preferences according to Maximin voting method.
+        """Calculate ranking list of candidates based on voters' preferences
+        according to Maximin voting method.
         """
         pair_comparison = list(itertools.permutations(
             self.preferences.values()[0], 2))
@@ -42,7 +45,8 @@ class VotingSystems:
         return self.sort_candidates(self.candidates_points)
 
     def pluarality(self):
-        """Calculate ranking list of candidates based on voters' preferences according to Plurality voting method.
+        """Calculate ranking list of candidates based on voters' preferences
+        according to Plurality voting method.
         """
         for voter, voters_preference in self.preferences.iteritems():
             self.candidates_points[voters_preference[0]] += 1
@@ -102,4 +106,5 @@ class VotingSystems:
                 self.candidates_points[pair.keys()[1]] += 1
 
     def sort_candidates(self, candidate_list):
-        return sorted(candidate_list.items(), key=operator.itemgetter(1), reverse=True)
+        return sorted(candidate_list.items(),
+                      key=operator.itemgetter(1), reverse=True)

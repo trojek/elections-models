@@ -1,16 +1,18 @@
 import random
 import itertools
 import math
+import operator
 
 
 class DistributionModels:
 
-    def __init__(self, number_of_voters, number_of_candidates):
+    def __init__(self, number_of_voters, number_of_candidates,
+                 number_of_offset_voters=0, number_of_offset_candidates=0):
         self.nov = number_of_voters
         self.noc = number_of_candidates
         self.preferences = {}
 
-    def polya_eggenberger(self, all_possible_votes, b = 0):
+    def polya_eggenberger(self, all_possible_votes, b=0):
         """Simulates Polya-Eggenberger urn model (Impartial Culture for b = 0)
         """
         for i in range(0, self.nov):
@@ -28,7 +30,6 @@ class DistributionModels:
         """
         candidates = self.generate_random_positions_1d(self.noc)
         voters = self.generate_random_positions_1d(self.nov)
-        candidates.sort()
 
         for i, voter in enumerate(voters, start=1):
             self.preferences["v" + str(i)] = {}
@@ -79,3 +80,16 @@ class DistributionModels:
             candidates.append("c" + str(i))
 
         return list(itertools.permutations(candidates))
+
+    def convert_voters_preferences_from_single_peaked_to_ranking(self, vp):
+        voters_preference = {}
+        for key, value in vp.iteritems():
+            candidates = []
+            sorted_preferences = sorted(value.items(),
+                                        key=operator.itemgetter(1))
+            for i in sorted_preferences:
+                candidates.append(i[0])
+
+            voters_preference[key] = tuple(candidates)
+
+        return voters_preference
