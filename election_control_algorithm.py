@@ -1,16 +1,14 @@
-from distribution_models import DistributionModels
+from distribution_model import DistributionModel
 from voting_systems import VotingSystems
 
 
 class PluralityControl:
 
     def __init__(self):
-        dm = DistributionModels(4, 4)
+        dm = DistributionModel(4, 4)
         possible_votes = dm.generate_all_possible_votes("voting system")
         self.voters_preferences = dm.polya_eggenberger(possible_votes)
-        vs = VotingSystems(self.voters_preferences)
-
-        self.candidates_ranking = vs.pluarality()
+        self.vs = VotingSystems(self.voters_preferences)
 
     def ccac(list_of_preferences):
         pass
@@ -19,6 +17,7 @@ class PluralityControl:
         pass
 
     def ccdc(self):
+        self.candidates_ranking = self.vs.pluarality()
         print self.voters_preferences
         print self.candidates_ranking
 

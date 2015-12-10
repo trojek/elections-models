@@ -2,7 +2,7 @@ import itertools
 import operator
 
 
-class VotingSystems:
+class VotingSystem:
 
     def __init__(self, preferences):
         self.preferences = preferences

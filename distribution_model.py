@@ -4,7 +4,7 @@ import math
 import operator
 
 
-class DistributionModels:
+class DistributionModel:
 
     def __init__(self, number_of_voters, number_of_candidates,
                  number_of_offset_voters=0, number_of_offset_candidates=0):
