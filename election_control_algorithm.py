@@ -1,5 +1,5 @@
 from distribution_model import DistributionModel
-from voting_systems import VotingSystems
+from voting_system import VotingSystem
 
 
 class PluralityControl:
@@ -8,7 +8,7 @@ class PluralityControl:
         dm = DistributionModel(4, 4)
         possible_votes = dm.generate_all_possible_votes("voting system")
         self.voters_preferences = dm.polya_eggenberger(possible_votes)
-        self.vs = VotingSystems(self.voters_preferences)
+        self.vs = VotingSystem(self.voters_preferences)
 
     def ccac(list_of_preferences):
         pass
