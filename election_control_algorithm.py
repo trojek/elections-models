@@ -10,13 +10,16 @@ class PluralityControl:
         self.voters_preferences = dm.polya_eggenberger(possible_votes)
         self.vs = VotingSystem(self.voters_preferences)
 
-    def ccac(list_of_preferences):
+    def ccac(self):
         pass
 
-    def dcac():
+    def dcac(self):
         pass
 
     def ccdc(self):
+        pass
+
+    def dcdc(self):
         self.candidates_ranking = self.vs.pluarality()
         candidates_ranking_base = list(self.candidates_ranking)
 
@@ -30,9 +33,6 @@ class PluralityControl:
                 break
 
         return controlable
-
-    def dcdc():
-        pass
 
 
 class BordaControl:
