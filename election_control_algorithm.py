@@ -18,8 +18,18 @@ class PluralityControl:
 
     def ccdc(self):
         self.candidates_ranking = self.vs.pluarality()
-        print self.voters_preferences
-        print self.candidates_ranking
+        candidates_ranking_base = list(self.candidates_ranking)
+
+        controlable = 0
+
+        # execption handling - for empty list
+        while True:
+            self.candidates_ranking.pop(0)
+            if candidates_ranking_base[0][0] != self.candidates_ranking[0][0]:
+                controlable = 1
+                break
+
+        return controlable
 
     def dcdc():
         pass
