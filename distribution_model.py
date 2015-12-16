@@ -12,14 +12,14 @@ class DistributionModel:
         self.noc = number_of_candidates
         self.preferences = {}
 
-    def polya_eggenberger(self, all_possible_votes, b=0):
+    def polya_eggenberger(self, all_possible_preferences, b=0):
         """Simulates Polya-Eggenberger urn model (Impartial Culture for b = 0)
         """
         for i in range(0, self.nov):
-            drawn_vote = self.draw_vote(all_possible_votes)
-            self.preferences["v" + str(i + 1)] = drawn_vote
+            drawn_preference = self.draw_vote(all_possible_preferences)
+            self.preferences["v" + str(i + 1)] = drawn_preference
             for _ in range(b):
-                all_possible_votes.append(drawn_vote)
+                all_possible_preferences.append(drawn_preference)
         return self.preferences
 
     def impartial_culture():
@@ -74,7 +74,10 @@ class DistributionModel:
             list_of_positions.append((random.random(), random.random()))
         return list_of_positions
 
-    def generate_all_possible_votes(self, voting_system):
+    def generate_all_possible_preferences(self):
+        """Generate all possible votes preferences (m!, where m - number of candidates)
+        e.g. (c2, c4, c1, c3)
+        """
         candidates = []
         for i in range(1, self.noc + 1):
             candidates.append("c" + str(i))

@@ -6,7 +6,7 @@ class PluralityControl:
 
     def __init__(self):
         dm = DistributionModel(4, 4)
-        possible_votes = dm.generate_all_possible_votes("voting system")
+        possible_votes = dm.generate_all_possible_preferences()
         self.voters_preferences = dm.polya_eggenberger(possible_votes)
         self.vs = VotingSystem(self.voters_preferences)
 

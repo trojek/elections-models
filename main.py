@@ -1,15 +1,9 @@
-# import yaml
-
-# from distribution_models import DistributionModels
-# from voting_systems import VotingSystems
-from election_control_algorithm import PluralityControl
-
-pluralitycontrol = PluralityControl()
-print pluralitycontrol.ccdc()
+from timeit import default_timer
 
 
-"""
-def method (number_of_voters, number_of_candidates, distribution_model, voting_system, control_type)
-controlable
-return controlable (0 or 1)
-"""
+start = default_timer()
+"Stupid test function"
+L = [i for i in range(100)]
+end = default_timer()
+print(end - start)
+print L
