@@ -4,11 +4,8 @@ from voting_system import VotingSystem
 
 class PluralityControl:
 
-    def __init__(self):
-        dm = DistributionModel(4, 4)
-        possible_votes = dm.generate_all_possible_preferences()
-        self.voters_preferences = dm.polya_eggenberger(possible_votes)
-        self.vs = VotingSystem(self.voters_preferences)
+    def __init__(self, voters_preferences):
+        self.vs = VotingSystem(voters_preferences)
 
     def ccac(self):
         pass

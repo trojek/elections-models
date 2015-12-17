@@ -12,9 +12,12 @@ class DistributionModel:
         self.noc = number_of_candidates
         self.preferences = {}
 
-    def polya_eggenberger(self, all_possible_preferences, b=0):
+    def polya_eggenberger(self, b=0):
         """Simulates Polya-Eggenberger urn model (Impartial Culture for b = 0)
         """
+
+        all_possible_preferences = self.generate_all_possible_preferences()
+
         for i in range(0, self.nov):
             drawn_preference = self.draw_vote(all_possible_preferences)
             self.preferences["v" + str(i + 1)] = drawn_preference

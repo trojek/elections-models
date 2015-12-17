@@ -1,9 +1,4 @@
-from timeit import default_timer
+from election import Election
 
-
-start = default_timer()
-"Stupid test function"
-L = [i for i in range(100)]
-end = default_timer()
-print(end - start)
-print L
+test_election = Election()
+print test_election.make_election(4, 4, "polya_eggenberger", "PluralityControl", "dcdc")
