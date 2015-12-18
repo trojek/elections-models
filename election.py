@@ -24,7 +24,7 @@ class Election:
         - single_peaked_1d
         - single_peaked_2d
         """
-        vp = dm.distribution_model()
+        vp = getattr(dm, distribution_model)()
 
         """ Control start"""
         start = default_timer()
@@ -36,8 +36,8 @@ class Election:
         - CopelandControl
         - MaximinControl
         """
-        control = eca.voting_system(vp)
-        controlable = control.control_type()
+        control = getattr(eca, voting_system)(vp)
+        controlable = getattr(control, control_type)()
 
         end = default_timer()
         running_time = end - start
