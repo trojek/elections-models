@@ -20,9 +20,9 @@ class Election:
         # set somehow distribution model in line below
         """
         possible distribution models:
-        - polya_eggenberger
-        - single_peaked_1d
-        - single_peaked_2d
+            - polya_eggenberger
+            - single_peaked_1d
+            - single_peaked_2d
         """
         vp = getattr(dm, distribution_model)()
 
@@ -31,10 +31,10 @@ class Election:
 
         """
         possible voting systems:
-        - PluralityControl
-        - BordaControl
-        - CopelandControl
-        - MaximinControl
+            - PluralityControl
+            - BordaControl
+            - CopelandControl
+            - MaximinControl
         """
         control = getattr(eca, voting_system)(vp)
         controlable = getattr(control, control_type)()
