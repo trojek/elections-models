@@ -46,17 +46,43 @@ class PluralityControl:
 
 class BordaControl:
 
+    def __init__(self, voters_preferences):
+        self.vs = VotingSystem(voters_preferences)
+
     def ccac():
         pass
 
     def dcac():
         pass
 
-    def ccdc():
-        pass
+    def ccdc(self):
+        self.candidates_ranking = self.vs.borda()
+        denoted_candidate = random.choice(self.candidates_ranking[1:])
+        controlable = 0
 
-    def dcdc():
-        pass
+        # execption handling - for empty list
+        while True:
+            self.candidates_ranking.pop(0)
+            if self.candidates_ranking[0] == denoted_candidate:
+                controlable = 1
+                break
+
+        return controlable
+
+    def dcdc(self):
+        self.candidates_ranking = self.vs.borda()
+        candidates_ranking_base = list(self.candidates_ranking)
+
+        controlable = 0
+
+        # execption handling - for empty list
+        while True:
+            self.candidates_ranking.pop(0)
+            if candidates_ranking_base[0][0] != self.candidates_ranking[0][0]:
+                controlable = 1
+                break
+
+        return controlable
 
     def ccav():
         pass
