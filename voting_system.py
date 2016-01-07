@@ -44,7 +44,7 @@ class VotingSystem:
 
         return self.sort_candidates(self.candidates_points)
 
-    def pluarality(self):
+    def plurality(self):
         """Calculate ranking list of candidates based on voters' preferences
         according to Plurality voting method.
         """
